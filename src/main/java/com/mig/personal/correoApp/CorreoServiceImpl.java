@@ -31,7 +31,7 @@ public class CorreoServiceImpl implements CorreoService {
     public void guardar(Correo correo) {
         // Asigna un ID único
         correo.setnId(contador++);
-        
+
         // Según el valor de nIdTipoCorreo, asigna el nombre correspondiente
         if (correo.getnIdTipoCorreo() != null) {
             switch (correo.getnIdTipoCorreo()) {
@@ -55,11 +55,29 @@ public class CorreoServiceImpl implements CorreoService {
         listaCorreos.add(correo);
     }
 
-
     @Override
     public void actualizar(Correo correo) {
         for (int i = 0; i < listaCorreos.size(); i++) {
             if (listaCorreos.get(i).getnId() == correo.getnId()) {
+                // Se puede actualizar también sTipoCorreo según el nIdTipoCorreo
+                if (correo.getnIdTipoCorreo() != null) {
+                    switch (correo.getnIdTipoCorreo()) {
+                        case 1:
+                            correo.setsTipoCorreo("Personal");
+                            break;
+                        case 2:
+                            correo.setsTipoCorreo("Laboral");
+                            break;
+                        case 3:
+                            correo.setsTipoCorreo("Otro");
+                            break;
+                        default:
+                            correo.setsTipoCorreo("Desconocido");
+                            break;
+                    }
+                } else {
+                    correo.setsTipoCorreo("No especificado");
+                }
                 listaCorreos.set(i, correo);
                 return;
             }

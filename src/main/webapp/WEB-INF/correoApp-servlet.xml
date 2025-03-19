@@ -10,7 +10,7 @@
           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- Escanear los componentes en el paquete base -->
+    <!-- Escaneo de componentes -->
     <context:component-scan base-package="com.mig.personal.correoApp" />
 
     <!-- Habilitar anotaciones de Spring MVC -->
@@ -25,8 +25,17 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!-- Definición del DataSource -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
     <!-- Configuración de Hibernate -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:hibernate.cfg.xml" />
     </bean>
 
