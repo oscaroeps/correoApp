@@ -28,12 +28,11 @@ public class HomeController {
     public String nuevoRegistro(Model model) {
         model.addAttribute("accion", "Nuevo");
         model.addAttribute("correo", new Correo());
-        // Agregar la lista de tipos de correo:
-        model.addAttribute("listaTipos", obtenerListaTipos());
+        model.addAttribute("listaTipos", obtenerListaTipos()); // Asegúrate de incluir esta línea
         return "form";
     }
 
- // Método auxiliar para simular los tipos de correo
+    // Método auxiliar para simular los tipos de correo
     private List<TipoCorreo> obtenerListaTipos() {
         List<TipoCorreo> lista = new ArrayList<>();
         lista.add(new TipoCorreo(1, "Personal"));
@@ -41,6 +40,7 @@ public class HomeController {
         lista.add(new TipoCorreo(3, "Otro"));
         return lista;
     }
+
 
     // 3. Procesar el guardado del nuevo registro
     @PostMapping("/guardar")
@@ -55,13 +55,11 @@ public class HomeController {
     public String editarRegistro(@RequestParam("id") int id, Model model) {
         Correo correo = correoService.obtenerPorId(id);
         if (correo == null) {
-            // Se puede redirigir a error o a la lista, según la lógica de negocio
             return "redirect:/";
         }
         model.addAttribute("accion", "Editar");
         model.addAttribute("correo", correo);
-        // También se puede enviar la lista de tipos de correo
-        // model.addAttribute("listaTipos", listaDeTipos);
+        model.addAttribute("listaTipos", obtenerListaTipos()); // Agrega la lista aquí también
         return "form";
     }
 
