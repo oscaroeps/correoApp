@@ -56,6 +56,22 @@ public class Correo {
         this.nIdTipoCorreo = nIdTipoCorreo;
     }
     public String getsTipoCorreo() {
+        if (sTipoCorreo == null) {
+            if (nIdTipoCorreo != null) {
+                switch (nIdTipoCorreo) {
+                    case 1:
+                        return "Personal";
+                    case 2:
+                        return "Laboral";
+                    case 3:
+                        return "Otro";
+                    default:
+                        return "Desconocido";
+                }
+            } else {
+                return "No especificado";
+            }
+        }
         return sTipoCorreo;
     }
     public void setsTipoCorreo(String sTipoCorreo) {
