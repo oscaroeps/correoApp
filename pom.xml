@@ -16,6 +16,26 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.3.25.RELEASE</version>
         </dependency>
+        <!-- Dependencia de Hibernate Core -->
+	    <dependency>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-core</artifactId>
+	        <version>5.4.0.Final</version>
+	    </dependency>
+		
+	    <!-- Dependencia para integración de Spring con Hibernate -->
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-orm</artifactId>
+	        <version>4.3.25.RELEASE</version>
+	    </dependency>
+	
+	    <!-- Base de datos H2 para pruebas en memoria -->
+	    <dependency>
+	        <groupId>com.h2database</groupId>
+	        <artifactId>h2</artifactId>
+	        <version>1.4.200</version>
+	    </dependency>
         <!-- JSTL para el manejo de vistas JSP -->
         <dependency>
             <groupId>javax.servlet</groupId>
